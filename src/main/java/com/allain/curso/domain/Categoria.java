@@ -23,7 +23,6 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	
 	//Just the other side of another mapping called categories	
 	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
@@ -87,6 +86,7 @@ public class Categoria implements Serializable{
 			return false;
 		return true;
 	}
+
 	
 	
 }
