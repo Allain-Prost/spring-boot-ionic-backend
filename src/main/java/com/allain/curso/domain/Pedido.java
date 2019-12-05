@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -23,19 +25,22 @@ public class Pedido implements Serializable {
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
 	
+	@ManyToOne
+	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	@ManyToOne
+	@JoinColumn(name="endereco_entrega_id")
 	private Endereco enderecoDeEntrega;
 	
 	public Pedido() {
 		
 	}
 	
-	public Pedido(Integer id, Date instate, Pagamento pagamento, Cliente cliente,Endereco enderecoDeEntrega) {
+	public Pedido(Integer id,Date instate,Cliente cliente,Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
 		this.instate = instate;
-		this.pagamento = pagamento;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
@@ -44,7 +49,7 @@ public class Pedido implements Serializable {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(final Integer id) {
 		this.id = id;
 	}
 
@@ -52,7 +57,7 @@ public class Pedido implements Serializable {
 		return instate;
 	}
 
-	public void setInstate(Date instate) {
+	public void setInstate(final Date instate) {
 		this.instate = instate;
 	}
 
@@ -60,7 +65,7 @@ public class Pedido implements Serializable {
 		return pagamento;
 	}
 
-	public void setPagamento(Pagamento pagamento) {
+	public void setPagamento(final Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
 
@@ -68,7 +73,7 @@ public class Pedido implements Serializable {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(final Cliente cliente) {
 		this.cliente = cliente;
 	}
 
@@ -76,7 +81,7 @@ public class Pedido implements Serializable {
 		return enderecoDeEntrega;
 	}
 
-	public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
+	public void setEnderecoDeEntrega(final Endereco enderecoDeEntrega) {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
@@ -89,14 +94,14 @@ public class Pedido implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pedido other = (Pedido) obj;
+		final Pedido other = (Pedido) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
