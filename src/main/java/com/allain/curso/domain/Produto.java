@@ -30,7 +30,7 @@ public class Produto implements Serializable {
 	
 	
 	//Creation of a new table, since their relationship is 1 to N
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 		joinColumns = @JoinColumn(name ="produto_id"),
